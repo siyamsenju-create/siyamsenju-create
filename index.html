@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Silent Doubt — Anonymous Classroom Q&A</title>
+  <meta name="description" content="Real-time anonymous Q&A for classrooms. Ask freely, learn better. Students ask questions anonymously, teachers see them instantly sorted by votes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/screens.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCREEN 1: LANDING                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="screen active" id="screen-landing">
+      <div class="landing-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+      </div>
+      <div class="landing-content">
+        <div class="logo-block">
+          <div class="logo-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="12" fill="url(#logoGrad)"/>
+              <path d="M12 14h16M12 20h10M12 26h13" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="30" cy="26" r="5" fill="#8B5CF6"/>
+              <path d="M28.5 26l1 1 2-2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#4F46E5"/>
+                  <stop offset="1" stop-color="#8B5CF6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="logo-text">Silent Doubt</span>
+        </div>
+
+        <div class="landing-hero">
+          <div class="badge-pill">
+            <span class="live-dot"></span>
+            Real-time · Anonymous · Instant
+          </div>
+          <h1 class="hero-title">Ask freely.<br/>Learn better.</h1>
+          <p class="hero-sub">No judgment. No names. Just questions that matter — surfaced by your classmates in real time.</p>
+        </div>
+
+        <div class="landing-actions">
+          <button class="btn btn-primary btn-large" id="btn-scan-qr" onclick="App.navigate('screen-qr-join')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+              <path d="M3 14h3v3H3zm4 0h1v1H7zm-1 2h1v1H6zm-3 2h3"/>
+            </svg>
+            Scan QR Code
+          </button>
+          <button class="btn btn-secondary btn-large" id="btn-join-code" onclick="App.navigate('screen-join-code')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Join with Code
+          </button>
+          <div class="divider-text">or</div>
+          <button class="btn btn-ghost" id="btn-create-session" onclick="App.navigate('screen-teacher-create')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            I'm a Teacher — Create Session
+          </button>
+        </div>
+
+        <p class="landing-hint">Works on any device · No signup required</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCREEN 2: QR SCANNER                       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="screen" id="screen-qr-join">
+      <div class="scanner-bg"></div>
+      <div class="scanner-top-bar">
+        <button class="back-btn" onclick="App.navigate('screen-landing')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+        </button>
+        <span>Scan QR Code</span>
+        <div style="width:40px"></div>
+      </div>
+
+      <div class="scanner-viewport">
+        <div class="scanner-frame">
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+          <div class="scan-line"></div>
+          <div class="scan-crosshair"></div>
+        </div>
+        <p class="scanner-hint">Point camera at the classroom QR code</p>
+      </div>
+
+      <div class="scanner-bottom">
+        <p class="scanner-alt-text">QR not working?</p>
+        <button class="btn btn-primary" onclick="App.navigate('screen-join-code')" style="width:240px">Enter Code Manually</button>
+        <!-- Demo button for simulation -->
+        <button class="btn btn-ghost" style="width:240px;margin-top:8px" onclick="App.simulateScan()">
+          ✨ Simulate Scan (Demo)
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCREEN 3: JOIN WITH CODE                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="screen" id="screen-join-code">
+      <div class="screen-content-center">
+        <button class="back-btn back-btn-dark" onclick="App.navigate('screen-landing')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+        </button>
+
+        <div class="join-card">
+          <div class="join-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+            </svg>
+          </div>
+          <h2>Join Session</h2>
+          <p class="join-sub">Enter the 6-character code from your teacher</p>
+
+          <div class="code-input-row" id="code-input-row">
+            <input class="code-box" maxlength="1" type="text" id="c1" data-idx="0" />
+            <input class="code-box" maxlength="1" type="text" id="c2" data-idx="1" />
+            <input class="code-box" maxlength="1" type="text" id="c3" data-idx="2" />
+            <span class="code-dash">–</span>
+            <input class="code-box" maxlength="1" type="text" id="c4" data-idx="3" />
+            <input class="code-box" maxlength="1" type="text" id="c5" data-idx="4" />
+            <input class="code-box" maxlength="1" type="text" id="c6" data-idx="5" />
+          </div>
+
+          <button class="btn btn-primary btn-large" id="btn-join-submit" style="width:100%;" onclick="App.joinWithCode()">
+            Join Classroom
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          </button>
+
+          <div class="demo-codes">
+            <p style="font-size:12px;color:var(--gray-500);margin-bottom:8px">Demo codes:</p>
+            <button class="pill-btn" onclick="App.fillCode('SD2024')">SD2024</button>
+            <button class="pill-btn" onclick="App.fillCode('CS101A')">CS101A</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCREEN 4: TEACHER CREATE SESSION           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="screen" id="screen-teacher-create">
+      <div class="screen-content-center">
+        <button class="back-btn back-btn-dark" onclick="App.navigate('screen-landing')">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+        </button>
+
+        <div class="join-card">
+          <div class="join-icon" style="background:linear-gradient(135deg,#10B981,#059669)">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h2>Create Session</h2>
+          <p class="join-sub">Set up your live classroom Q&A session</p>
+
+          <div class="form-group">
+            <label class="form-label">Class Name</label>
+            <input class="form-input" type="text" id="class-name-input" placeholder="e.g. Advanced Algorithms" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Name <span style="color:var(--gray-400)">(optional)</span></label>
+            <input class="form-input" type="text" id="teacher-name-input" placeholder="Prof. Smith" />
+          </div>
+
+          <button class="btn btn-success btn-large" style="width:100%;" onclick="App.createSession()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 7 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 7 23 7 23 13"/></svg>
+            Launch Live Session
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCREEN 5: STUDENT LIVE SESSION             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="screen" id="screen-student-live">
+      <div class="student-top-bar" id="student-top-bar">
+        <button class="back-btn-white" onclick="App.leaveSession()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+        </button>
+        <div class="top-bar-center">
+          <span class="session-class-name" id="student-class-name">Loading...</span>
+          <div class="live-badge"><span class="live-dot"></span> LIVE</div>
+        </div>
+        <div class="top-bar-right">
+          <div class="participants-count">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span id="student-participants-count">1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="session-code-bar" id="session-code-bar">
+        Session: <strong id="student-session-code">------</strong>
+        <button class="copy-code-btn" onclick="App.copySessionCode()" title="Copy code">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+      </div>
+
+      <!-- Question Feed -->
+      <div class="question-feed" id="student-question-feed">
+        <div class="empty-state" id="student-empty-state">
+          <div class="empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gray-300)">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="empty-title">No questions yet</h3>
+          <p class="empty-sub">Be the first to ask! Your question is completely anonymous.</p>
+          <div class="empty-arrow">↓ Ask below</div>
+        </div>
+        <div id="student-cards-container"></div>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="input-bar" id="student-input-bar">
+        <div class="input-bar-inner">
+          <div class="input-wrapper" id="student-input-wrapper">
+            <input
+              class="question-input"
+              type="text"
+              id="student-question-input"
+              placeholder="Ask anonymously..."
+              maxlength="280"
+              onkeydown="if(event.key==='Enter')App.submitQuestion()"
+              oninput="App.updateCharCount()"
+            />
+            <span class="char-count" id="char-count">280</span>
+          </div>
+          <button class="send-btn" id="student-send-btn" onclick="App.submitQuestion()">
+            <svg class="send-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9l20-7z"/></svg>
+          </button>
+        </div>
+        <div class="rate-limit-toast hidden" id="rate-limit-toast">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+          Wait a moment before asking again
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCREEN 6: TEACHER DASHBOARD (Desktop)      -->
+    <!-- ═══════════════════════════════════════════ -->
+    <div class="screen" id="screen-teacher-dashboard">
+      <!-- Top Bar -->
+      <div class="teacher-topbar">
+        <div class="teacher-topbar-left">
+          <div class="logo-block small">
+            <div class="logo-icon small-logo">
+              <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="12" fill="url(#logoGrad2)"/>
+                <path d="M12 14h16M12 20h10M12 26h13" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="30" cy="26" r="5" fill="#8B5CF6"/>
+                <path d="M28.5 26l1 1 2-2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs><linearGradient id="logoGrad2" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#4F46E5"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs>
+              </svg>
+            </div>
+            <span class="logo-text small-text">Silent Doubt</span>
+          </div>
+          <div class="teacher-session-info">
+            <span class="teacher-class-label" id="teacher-class-display">Class Name</span>
+            <div class="live-badge"><span class="live-dot"></span> LIVE SESSION</div>
+          </div>
+        </div>
+        <div class="teacher-topbar-stats">
+          <div class="stat-chip">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span id="teacher-participants">0</span> students
+          </div>
+          <div class="stat-chip">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span id="teacher-q-count">0</span> questions
+          </div>
+          <div class="stat-chip success">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="teacher-answered-count">0</span> answered
+          </div>
+          <div class="session-code-chip">
+            Code: <strong id="teacher-session-code-display">------</strong>
+            <button onclick="App.copySessionCode()" style="background:none;border:none;cursor:pointer;color:var(--primary-400);padding:0 4px">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="teacher-topbar-right">
+          <button class="btn btn-outline-danger" onclick="App.endSession()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+            End Session
+          </button>
+        </div>
+      </div>
+
+      <!-- Dashboard Body -->
+      <div class="teacher-body">
+        <!-- Left: Question Feed -->
+        <div class="teacher-left">
+          <div class="teacher-feed-header">
+            <h2 class="feed-title">Live Questions</h2>
+            <div class="sort-tabs">
+              <button class="sort-tab active" id="sort-votes" onclick="App.setSortMode('votes')">Top Voted</button>
+              <button class="sort-tab" id="sort-recent" onclick="App.setSortMode('recent')">Recent</button>
+              <button class="sort-tab" id="sort-unanswered" onclick="App.setSortMode('unanswered')">Unanswered</button>
+            </div>
+          </div>
+
+          <div class="teacher-question-feed" id="teacher-question-feed">
+            <div class="empty-state" id="teacher-empty-state">
+              <div class="empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gray-300)">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h3 class="empty-title">Waiting for questions...</h3>
+              <p class="empty-sub">Share the session code <strong id="share-code-hint">------</strong> with your students</p>
+            </div>
+            <div id="teacher-cards-container"></div>
+          </div>
+        </div>
+
+        <!-- Right: Controls Panel -->
+        <div class="teacher-right">
+          <div class="control-panel">
+            <h3 class="panel-title">Session Controls</h3>
+
+            <!-- QR Code Display -->
+            <div class="qr-display-card">
+              <p class="qr-label">Share QR Code</p>
+              <div class="qr-canvas-wrap">
+                <canvas id="qr-canvas" width="160" height="160"></canvas>
+              </div>
+              <p class="qr-sub">Students scan to join instantly</p>
+            </div>
+
+            <!-- Pinned Question -->
+            <div class="pinned-section" id="pinned-section" style="display:none">
+              <div class="panel-section-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17H19V13L17 11V5H16V4A1 1 0 0 0 15 3H9A1 1 0 0 0 8 4V5H7V11L5 13Z"/></svg>
+                Pinned for Discussion
+              </div>
+              <div class="pinned-card" id="pinned-card-content"></div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-section">
+              <div class="panel-section-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                Quick Actions
+              </div>
+              <div class="selected-info" id="selected-info">
+                <span id="selected-label">Select a question to act on it</span>
+              </div>
+              <div class="action-btns" id="action-btns">
+                <button class="action-btn success" id="btn-mark-answered" onclick="App.markAnswered()" disabled>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Mark Answered
+                </button>
+                <button class="action-btn primary" id="btn-pin" onclick="App.pinQuestion()" disabled>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17H19V13L17 11V5H16V4A1 1 0 0 0 15 3H9A1 1 0 0 0 8 4V5H7V11L5 13Z"/></svg>
+                  Pin Question
+                </button>
+                <button class="action-btn danger" id="btn-delete" onclick="App.deleteQuestion()" disabled>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6m4-6v6"/><path d="M9 6V4h6v2"/></svg>
+                  Delete
+                </button>
+              </div>
+            </div>
+
+            <!-- Session Stats -->
+            <div class="stats-section">
+              <div class="panel-section-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Session Activity
+              </div>
+              <div class="stats-grid">
+                <div class="mini-stat">
+                  <span class="mini-stat-val" id="stat-total-votes">0</span>
+                  <span class="mini-stat-label">Total Votes</span>
+                </div>
+                <div class="mini-stat">
+                  <span class="mini-stat-val" id="stat-engagement">0%</span>
+                  <span class="mini-stat-label">Engagement</span>
+                </div>
+                <div class="mini-stat" style="grid-column:1/-1">
+                  <span class="mini-stat-val" id="stat-top-question">—</span>
+                  <span class="mini-stat-label">Top question votes</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- #app -->
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/state.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/qr.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
