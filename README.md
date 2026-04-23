@@ -42,6 +42,7 @@ Hi, I'm **Siyam Meshak A**
 ### 🔹 Programming
 - Python
 - TypeScript
+- MERN Stack
 
 ### 🔹 AI / ML
 - Machine Learning
