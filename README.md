@@ -1,9 +1,3 @@
-
-  <img src="https://readme-typing-svg.herokuapp.com?color=00F7FF&center=true&vCenter=true&lines=AI+Developer;Web+Developer;Building+Real+Projects;Future+Founder" />
-</p>
-
-# Hi there 👋
-
 # 🚀 Siyam Meshak A — AI Developer & Builder
 
 Welcome to my personal portfolio on GitHub 👨💻  
