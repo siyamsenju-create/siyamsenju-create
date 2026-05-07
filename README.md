@@ -7,7 +7,7 @@ This profile showcases my projects, skills, and journey as an AI Developer and W
 
 ## 🔗 Live Portfolio
 🔗 [cutframeagency.netlify.app](https://cutframeagency.netlify.app/)
-
+🔗 (https://jjpaintingandhardwares.netlify.app/).
 ---
 
 ## 📌 About Me
